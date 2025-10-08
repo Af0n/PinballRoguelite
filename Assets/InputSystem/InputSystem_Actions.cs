@@ -109,6 +109,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Launcher"",
+                    ""type"": ""Button"",
+                    ""id"": ""d0948dfc-28f8-477e-8be1-c7d51031b3e8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -175,6 +184,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""LeftPaddle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6396fa43-006c-4ec5-a348-60f1fda5c251"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Launcher"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa97ba35-7a09-4b3a-a0b9-9905f4a20e98"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Launcher"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -764,6 +795,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Pinball = asset.FindActionMap("Pinball", throwIfNotFound: true);
         m_Pinball_RightPaddle = m_Pinball.FindAction("RightPaddle", throwIfNotFound: true);
         m_Pinball_LeftPaddle = m_Pinball.FindAction("LeftPaddle", throwIfNotFound: true);
+        m_Pinball_Launcher = m_Pinball.FindAction("Launcher", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -859,6 +891,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private List<IPinballActions> m_PinballActionsCallbackInterfaces = new List<IPinballActions>();
     private readonly InputAction m_Pinball_RightPaddle;
     private readonly InputAction m_Pinball_LeftPaddle;
+    private readonly InputAction m_Pinball_Launcher;
     /// <summary>
     /// Provides access to input actions defined in input action map "Pinball".
     /// </summary>
@@ -878,6 +911,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Pinball/LeftPaddle".
         /// </summary>
         public InputAction @LeftPaddle => m_Wrapper.m_Pinball_LeftPaddle;
+        /// <summary>
+        /// Provides access to the underlying input action "Pinball/Launcher".
+        /// </summary>
+        public InputAction @Launcher => m_Wrapper.m_Pinball_Launcher;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -910,6 +947,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @LeftPaddle.started += instance.OnLeftPaddle;
             @LeftPaddle.performed += instance.OnLeftPaddle;
             @LeftPaddle.canceled += instance.OnLeftPaddle;
+            @Launcher.started += instance.OnLauncher;
+            @Launcher.performed += instance.OnLauncher;
+            @Launcher.canceled += instance.OnLauncher;
         }
 
         /// <summary>
@@ -927,6 +967,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @LeftPaddle.started -= instance.OnLeftPaddle;
             @LeftPaddle.performed -= instance.OnLeftPaddle;
             @LeftPaddle.canceled -= instance.OnLeftPaddle;
+            @Launcher.started -= instance.OnLauncher;
+            @Launcher.performed -= instance.OnLauncher;
+            @Launcher.canceled -= instance.OnLauncher;
         }
 
         /// <summary>
@@ -1241,6 +1284,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLeftPaddle(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Launcher" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLauncher(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
