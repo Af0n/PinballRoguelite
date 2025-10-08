@@ -44,6 +44,7 @@ public class Launcher : MonoBehaviour
             _launchForce += ChargeRate * Time.deltaTime;
             // prevent over charging
             _launchForce = Mathf.Min(_launchForce, MaxLaunchForce);
+            Debug.Log(_launchForce);
             // wait until next frame
             yield return 0;
         }
