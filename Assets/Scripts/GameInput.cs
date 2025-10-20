@@ -1,16 +1,34 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(Launcher))]
 
 public class GameInput : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private InputSystem_Actions _actions;
+    private InputAction _launcherAction;
+
+    private Launcher _launchScrpit;
+
+    private void Awake()
     {
-        
+        // field populating
+        _launchScrpit = GetComponent<Launcher>();
+
+        // Input System Boilerplate
+        _actions = new();
+
+        _launcherAction = _actions.Pinball.Launcher;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        _launcherAction.Enable();
+        _launcherAction.performed += _launchScrpit.StartCharge;
+        _launcherAction.canceled += _launchScrpit.Launch;
+    }
+    
+    private void OnDisable() {
+        _launcherAction.Disable();
     }
 }
