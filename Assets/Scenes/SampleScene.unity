@@ -1653,6 +1653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8303288e9f75481418691b0004519bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LeftPaddleScript: {fileID: 1823794834}
 --- !u!4 &1489497196
 Transform:
   m_ObjectHideFlags: 0
@@ -2071,7 +2072,7 @@ ConstantForce:
   m_GameObject: {fileID: 1823794826}
   m_Enabled: 1
   m_Force: {x: 0, y: 0, z: 0}
-  m_RelativeForce: {x: 0, y: 0, z: 100}
+  m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
 --- !u!114 &1823794834

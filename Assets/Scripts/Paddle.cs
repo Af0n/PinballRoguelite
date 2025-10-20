@@ -29,6 +29,6 @@ public class Paddle : MonoBehaviour
     public void Unflip(InputAction.CallbackContext context)
     {
         _isFlipped = false;
-        _cf.relativeForce = new(0f, 0f, PaddleForce);
+        _cf.relativeForce = new(0f, 0f, -PaddleForce);
     }
 }
