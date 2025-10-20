@@ -8,8 +8,7 @@ public class Launcher : MonoBehaviour
     public float MaxLaunchForce;
     public float ChargeRate;
 
-    private InputSystem_Actions _actions;
-    private InputAction _launcherAction;
+    
 
     private Coroutine _chargeCoroutine;
     private float _launchForce;
@@ -20,15 +19,7 @@ public class Launcher : MonoBehaviour
         get { return _isCharging; }
     }
 
-    private void Awake()
-    {
-        // Input System Boilerplate
-        _actions = new();
-
-        _launcherAction = _actions.Pinball.Launcher;
-    }
-
-    private void StartCharge(InputAction.CallbackContext context)
+    public void StartCharge(InputAction.CallbackContext context)
     {
         _chargeCoroutine = StartCoroutine(DoCharge());
     }
@@ -50,7 +41,7 @@ public class Launcher : MonoBehaviour
         }
     }
 
-    private void Launch(InputAction.CallbackContext context)
+    public void Launch(InputAction.CallbackContext context)
     {
         // do nothing if not charging
         if (!_isCharging)
@@ -61,16 +52,5 @@ public class Launcher : MonoBehaviour
         StopCoroutine(_chargeCoroutine);
 
         BallRB.AddForce(transform.forward * _launchForce);
-    }
-
-    private void OnEnable()
-    {
-        _launcherAction.Enable();
-        _launcherAction.performed += StartCharge;
-        _launcherAction.canceled += Launch;
-    }
-    
-    private void OnDisable() {
-        _launcherAction.Disable();
     }
 }
