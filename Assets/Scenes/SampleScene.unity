@@ -1258,7 +1258,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1858,6 +1858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LeftPaddleScript: {fileID: 1823794834}
+  RightPaddleScript: {fileID: 760501117}
 --- !u!4 &1489497196
 Transform:
   m_ObjectHideFlags: 0
